@@ -1,0 +1,5 @@
+# PDFファイルは生成物なのでGitで管理しない
+**/*.pdf
+
+# macOS
+.DS_Store
