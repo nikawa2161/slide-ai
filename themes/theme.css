@@ -1,0 +1,240 @@
+/*
+ * @theme slide-ai
+ * @author slide-ai project
+ * @description 明るく親しみやすいパステルカラーのカスタムテーマ
+ */
+
+@import 'default';
+
+/* カラー変数定義 */
+:root {
+  /* パステルカラーパレット */
+  --color-primary: #87ceeb;      /* スカイブルー */
+  --color-secondary: #ffb6c1;    /* ライトピンク */
+  --color-accent: #ffd700;       /* ゴールド */
+  --color-background: #fffaf0;   /* フローラルホワイト */
+  --color-text: #333333;         /* ダークグレー */
+  --color-heading: #4682b4;      /* スチールブルー */
+  --color-link: #20b2aa;         /* ライトシーグリーン */
+  --color-code-bg: #f0f8ff;      /* アリスブルー */
+}
+
+/* セクション設定 */
+section {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Hiragino Sans', 'Noto Sans CJK JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-size: 28px;
+  line-height: 1.6;
+  padding: 80px;
+}
+
+/* 見出しスタイル */
+h1 {
+  color: var(--color-heading);
+  border-bottom: 4px solid var(--color-primary);
+  padding-bottom: 10px;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  color: var(--color-heading);
+  border-left: 6px solid var(--color-secondary);
+  padding-left: 15px;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  color: var(--color-heading);
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+}
+
+/* リンク */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s;
+}
+
+a:hover {
+  border-bottom-color: var(--color-link);
+}
+
+/* コードブロック */
+pre {
+  background-color: var(--color-code-bg);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 1.2em;
+  font-size: 0.85em;
+  overflow-x: auto;
+}
+
+code {
+  background-color: var(--color-code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* リスト */
+ul, ol {
+  margin-left: 1.5em;
+  line-height: 1.8;
+}
+
+ul li::marker {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+ol li::marker {
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+/* 強調 */
+strong {
+  color: var(--color-heading);
+  font-weight: bold;
+}
+
+em {
+  color: var(--color-secondary);
+  font-style: italic;
+}
+
+/* テーブル */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-size: 0.9em;
+}
+
+thead {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: var(--color-code-bg);
+}
+
+/* 引用 */
+blockquote {
+  border-left: 6px solid var(--color-accent);
+  background-color: var(--color-code-bg);
+  padding: 1em 1.5em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #555;
+}
+
+/* 画像 */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ページネーション */
+section::after {
+  color: #888;
+  font-size: 0.7em;
+}
+
+/* ヘッダー・フッター */
+header, footer {
+  color: #666;
+  font-size: 0.6em;
+  opacity: 0.7;
+}
+
+/* タイトルスライド用（最初のスライド） */
+section.title {
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+}
+
+section.title h1 {
+  color: white;
+  border-bottom: none;
+  font-size: 3em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+section.title p {
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+/* セクションスライド用（区切りスライド） */
+section.section {
+  justify-content: center;
+  text-align: center;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+section.section h2 {
+  color: white;
+  border-left: none;
+  font-size: 2.5em;
+  padding: 0;
+}
+
+/* インフォメーションボックス（カスタムスタイル） */
+.info-box {
+  background-color: var(--color-code-bg);
+  border-left: 4px solid var(--color-primary);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+.warning-box {
+  background-color: #fff3cd;
+  border-left: 4px solid var(--color-accent);
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 4px;
+}
+
+/* 2カラムレイアウト */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2em;
+}
+
+.columns > * {
+  margin: 0;
+}
