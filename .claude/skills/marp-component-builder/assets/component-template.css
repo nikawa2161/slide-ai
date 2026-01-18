@@ -1,0 +1,63 @@
+/* Component Template
+ * 新しいコンポーネントを作成する際のテンプレート
+ */
+
+/* ========================================
+   Component: [COMPONENT_NAME]
+   Description: [COMPONENT_DESCRIPTION]
+   ======================================== */
+
+/* Base Component */
+.[component-name] {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+
+  /* Spacing */
+  padding: var(--space-md);
+  margin: var(--space-sm) 0;
+
+  /* Visual */
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+
+  /* Typography */
+  font-family: var(--font-primary);
+  color: var(--color-text);
+}
+
+/* Elements */
+.[component-name]__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-sm);
+  color: var(--color-primary);
+}
+
+.[component-name]__content {
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.[component-name]__footer {
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Modifiers */
+.[component-name]--large {
+  padding: var(--space-lg);
+}
+
+.[component-name]--highlighted {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+}
+
+.[component-name]--bordered {
+  border: 2px solid var(--color-primary);
+}
