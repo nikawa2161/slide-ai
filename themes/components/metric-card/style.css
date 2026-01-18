@@ -1,0 +1,65 @@
+/**
+ * Metric Card Component
+ * モック画像を基にしたメトリクス表示カードコンポーネント
+ *
+ * 使用例:
+ * <div class="metric-cards">
+ *   <div class="metric-card">
+ *     <div class="metric-card__value">30<span class="metric-card__unit">種類</span></div>
+ *     <div class="metric-card__title">CSSコンポーネント</div>
+ *     <div class="metric-card__description">再利用可能なレイアウト</div>
+ *   </div>
+ * </div>
+ */
+
+/* メトリクスカードコンテナ（3カラムグリッド） */
+:where(section) .metric-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5em;
+  margin: 1.5em 0;
+  width: 100%;
+}
+
+/* 個別カード */
+:where(section) .metric-card {
+  background-color: #f5f7fa;
+  border-radius: 12px;
+  padding: 1.5em 1.2em;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-width: 0;
+}
+
+/* メトリクス値 */
+:where(section) .metric-card__value {
+  font-size: 2.8em;
+  font-weight: bold;
+  color: #4169e1;
+  line-height: 1.2;
+  margin: 0 0 0.3em 0;
+}
+
+/* 単位 */
+:where(section) .metric-card__unit {
+  font-size: 0.4em;
+  font-weight: normal;
+  color: #333333;
+}
+
+/* タイトル */
+:where(section) .metric-card__title {
+  font-size: 1em;
+  font-weight: bold;
+  color: #333333;
+  margin: 0 0 0.4em 0;
+  line-height: 1.4;
+  border: none;
+}
+
+/* 説明テキスト */
+:where(section) .metric-card__description {
+  font-size: 0.8em;
+  color: #666666;
+  margin: 0;
+}

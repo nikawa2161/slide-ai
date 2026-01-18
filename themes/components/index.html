@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marp Component Catalog</title>
+  <style>
+    /* Metric Card Component */
+    .metric-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5em;
+      margin: 1.5em 0;
+      width: 100%;
+    }
+    .metric-card {
+      background-color: #f5f7fa;
+      border-radius: 12px;
+      padding: 1.5em 1.2em;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      min-width: 0;
+    }
+    .metric-card__value {
+      font-size: 2.8em;
+      font-weight: bold;
+      color: #4169e1;
+      line-height: 1.2;
+      margin: 0 0 0.3em 0;
+    }
+    .metric-card__unit {
+      font-size: 0.4em;
+      font-weight: normal;
+      color: #333333;
+    }
+    .metric-card__title {
+      font-size: 1em;
+      font-weight: bold;
+      color: #333333;
+      margin: 0 0 0.4em 0;
+      line-height: 1.4;
+      border: none;
+    }
+    .metric-card__description {
+      font-size: 0.8em;
+      color: #666666;
+      margin: 0;
+    }
+
+    /* Comparison Table Component */
+    .comparison-table {
+      width: 100%;
+      margin: 1.5em 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .comparison-table__row {
+      display: grid;
+      grid-template-columns: 200px repeat(3, 1fr);
+      gap: 0;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .comparison-table__row:last-child {
+      border-bottom: none;
+    }
+    .comparison-table__row--header {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      font-weight: bold;
+    }
+    .comparison-table__row--header .comparison-table__cell {
+      color: #1976d2;
+      font-size: 1.1em;
+      padding: 1em 1.2em;
+    }
+    .comparison-table__cell {
+      padding: 0.9em 1.2em;
+      text-align: center;
+      background-color: #ffffff;
+      border-right: 1px solid #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95em;
+      line-height: 1.4;
+    }
+    .comparison-table__cell:last-child {
+      border-right: none;
+    }
+    .comparison-table__cell--label {
+      background-color: #f5f7fa;
+      text-align: left;
+      justify-content: flex-start;
+      font-weight: 600;
+      color: #4a5568;
+    }
+    .comparison-table__row--header .comparison-table__cell--label {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      color: #1976d2;
+    }
+    .comparison-table__cell--check {
+      color: #4caf50;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .comparison-table__cell--cross {
+      color: #f44336;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .comparison-table__row:nth-child(even) .comparison-table__cell:not(.comparison-table__cell--label) {
+      background-color: #fafbfc;
+    }
+
+    /* Vertical Card Component */
+    .vertical-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      margin: 1.5em 0;
+      width: 100%;
+    }
+    .vertical-card {
+      background: linear-gradient(135deg, #f0f4ff 0%, #fdf5ff 100%);
+      border-radius: 16px;
+      padding: 1.8em 2em;
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5em;
+    }
+    .vertical-card__number {
+      flex-shrink: 0;
+      width: 2.5em;
+      height: 2.5em;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+    .vertical-card__content {
+      flex: 1;
+      min-width: 0;
+    }
+    .vertical-card__label {
+      font-size: 0.85em;
+      color: #667eea;
+      font-weight: 600;
+      margin: 0 0 0.5em 0;
+      letter-spacing: 0.05em;
+    }
+    .vertical-card__title {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #2d3748;
+      margin: 0 0 0.6em 0;
+      line-height: 1.4;
+    }
+    .vertical-card__description {
+      font-size: 0.95em;
+      color: #4a5568;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    /* Grid Card Component */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5em;
+      margin: 1.5em 0;
+      width: 100%;
+    }
+    .grid-card {
+      background-color: #f0f4f8;
+      border-radius: 12px;
+      padding: 1.5em 1.8em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .grid-card__header {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      margin-bottom: 0.8em;
+    }
+    .grid-card__icon {
+      font-size: 1.8em;
+      line-height: 1;
+    }
+    .grid-card__title {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #2d3748;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .grid-card__content {
+      margin: 0;
+      padding: 0;
+    }
+    .grid-card__content ul {
+      margin: 0;
+      padding-left: 1.2em;
+      list-style-type: disc;
+    }
+    .grid-card__content li {
+      font-size: 0.9em;
+      color: #4a5568;
+      line-height: 1.7;
+      margin: 0.4em 0;
+    }
+
+    /* Page Styles */
+    body {
+      font-family: 'Hiragino Sans', 'Noto Sans CJK JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 2.5em;
+      border-bottom: 4px solid #4169e1;
+      padding-bottom: 10px;
+    }
+    h2 {
+      color: #4169e1;
+      margin-top: 60px;
+      margin-bottom: 15px;
+      font-size: 2em;
+      border-left: 6px solid #4169e1;
+      padding-left: 15px;
+    }
+    h3 {
+      color: #555;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+    }
+    .toc {
+      background-color: #f0f8ff;
+      border-left: 4px solid #4169e1;
+      padding: 20px 30px;
+      margin: 30px 0;
+      border-radius: 4px;
+    }
+    .toc h2 {
+      margin-top: 0;
+      border-left: none;
+      padding-left: 0;
+      font-size: 1.5em;
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      margin: 10px 0;
+    }
+    .toc a {
+      color: #4169e1;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+    .toc a:hover {
+      text-decoration: underline;
+    }
+    .component-section {
+      margin-bottom: 80px;
+      border-top: 2px solid #e0e0e0;
+      padding-top: 40px;
+    }
+    .use-case {
+      background-color: #fffaf0;
+      border-left: 4px solid #ffd700;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .use-case h4 {
+      margin-top: 0;
+      color: #d4a017;
+      font-size: 1.1em;
+    }
+    .use-case ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .example-container {
+      margin: 30px 0;
+      padding: 30px;
+      background-color: #fafbfc;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    .example-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    code {
+      background-color: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+      font-size: 0.9em;
+    }
+    pre {
+      background-color: #2d2d2d;
+      color: #f8f8f2;
+      padding: 20px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    pre code {
+      background-color: transparent;
+      padding: 0;
+      color: #f8f8f2;
+    }
+    .features {
+      background-color: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+    .features h4 {
+      margin-top: 0;
+      color: #2e7d32;
+      font-size: 1.1em;
+    }
+    .features ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Marp Component Catalog</h1>
+    <p>Marpスライドで使用できるCSSコンポーネントのカタログです。実際のデザインを確認しながら、スライドに適したコンポーネントを選択できます。</p>
+
+    <div class="toc">
+      <h2>目次</h2>
+      <ul>
+        <li><a href="#metric-card">1. Metric Card - 数値・メトリクス表示</a></li>
+        <li><a href="#comparison-table">2. Comparison Table - 比較表</a></li>
+        <li><a href="#vertical-card">3. Vertical Card - 縦並びカード</a></li>
+        <li><a href="#grid-card">4. Grid Card - グリッドカード</a></li>
+      </ul>
+    </div>
+
+    <!-- Metric Card Section -->
+    <div class="component-section" id="metric-card">
+      <h2>1. Metric Card</h2>
+      <p>数値やメトリクスを強調して表示する3カラムのカードコンポーネント。KPIやパフォーマンス指標の表示に最適です。</p>
+
+      <div class="use-case">
+        <h4>📊 ユースケース</h4>
+        <ul>
+          <li>KPI（重要業績評価指標）の表示</li>
+          <li>プロジェクトの実績数値</li>
+          <li>サービスの統計情報</li>
+          <li>パフォーマンス指標</li>
+        </ul>
+      </div>
+
+      <div class="features">
+        <h4>✨ 特徴</h4>
+        <ul>
+          <li>3カラムグリッドレイアウト</li>
+          <li>大きく読みやすい数値表示</li>
+          <li>単位、タイトル、説明文の階層構造</li>
+          <li>淡いグレー背景とシャドウ</li>
+        </ul>
+      </div>
+
+      <h3>基本的な使用例</h3>
+      <div class="example-container">
+        <div class="example-title">プロジェクト実績の表示</div>
+        <div class="metric-cards">
+          <div class="metric-card">
+            <div class="metric-card__value">30<span class="metric-card__unit">種類</span></div>
+            <div class="metric-card__title">CSSコンポーネント</div>
+            <div class="metric-card__description">再利用可能なレイアウト</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">100<span class="metric-card__unit">%</span></div>
+            <div class="metric-card__title">会社ブランド準拠</div>
+            <div class="metric-card__description">ロゴ・カラー完全対応</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">15<span class="metric-card__unit">分</span></div>
+            <div class="metric-card__title">生成時間</div>
+            <div class="metric-card__description">電車移動で完成</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>パフォーマンス指標の例</h3>
+      <div class="example-container">
+        <div class="example-title">サービス品質指標</div>
+        <div class="metric-cards">
+          <div class="metric-card">
+            <div class="metric-card__value">95<span class="metric-card__unit">%</span></div>
+            <div class="metric-card__title">顧客満足度</div>
+            <div class="metric-card__description">前年比+5%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">12K<span class="metric-card__unit">件</span></div>
+            <div class="metric-card__title">月間アクセス</div>
+            <div class="metric-card__description">安定した成長</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">2.3<span class="metric-card__unit">秒</span></div>
+            <div class="metric-card__title">平均応答時間</div>
+            <div class="metric-card__description">業界トップクラス</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>ビジネス指標の例</h3>
+      <div class="example-container">
+        <div class="example-title">年次報告データ</div>
+        <div class="metric-cards">
+          <div class="metric-card">
+            <div class="metric-card__value">¥850M<span class="metric-card__unit"></span></div>
+            <div class="metric-card__title">年間売上</div>
+            <div class="metric-card__description">前年比120%</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">340<span class="metric-card__unit">社</span></div>
+            <div class="metric-card__title">導入企業数</div>
+            <div class="metric-card__description">Fortune 500含む</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-card__value">24<span class="metric-card__unit">時間</span></div>
+            <div class="metric-card__title">サポート体制</div>
+            <div class="metric-card__description">365日対応</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>HTMLコード例</h3>
+      <pre><code>&lt;div class="metric-cards"&gt;
+  &lt;div class="metric-card"&gt;
+    &lt;div class="metric-card__value"&gt;30&lt;span class="metric-card__unit"&gt;種類&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="metric-card__title"&gt;CSSコンポーネント&lt;/div&gt;
+    &lt;div class="metric-card__description"&gt;再利用可能なレイアウト&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <p><strong>カスタマイズ可能な要素:</strong></p>
+      <ul>
+        <li><code>metric-card__value</code>: 数値</li>
+        <li><code>metric-card__unit</code>: 単位</li>
+        <li><code>metric-card__title</code>: タイトル</li>
+        <li><code>metric-card__description</code>: 説明文</li>
+      </ul>
+    </div>
+
+    <!-- Comparison Table Section -->
+    <div class="component-section" id="comparison-table">
+      <h2>2. Comparison Table</h2>
+      <p>複数項目を横並びで比較するテーブルコンポーネント。製品比較や機能比較に最適です。</p>
+
+      <div class="use-case">
+        <h4>📊 ユースケース</h4>
+        <ul>
+          <li>AIモデルの機能比較</li>
+          <li>製品スペック比較</li>
+          <li>料金プランの比較</li>
+          <li>機能の有無チェックリスト</li>
+        </ul>
+      </div>
+
+      <div class="features">
+        <h4>✨ 特徴</h4>
+        <ul>
+          <li>グラデーション背景のヘッダー行</li>
+          <li>左端のラベル列（200px）+ 3つの比較列</li>
+          <li>チェックマーク（✓）とバツマーク（✗）の色分け</li>
+          <li>偶数行の背景色で縞模様</li>
+          <li>シャドウとボーダーで視認性向上</li>
+        </ul>
+      </div>
+
+      <h3>AIモデル比較例</h3>
+      <div class="example-container">
+        <div class="example-title">主要AIモデルの機能比較</div>
+        <div class="comparison-table">
+          <div class="comparison-table__row comparison-table__row--header">
+            <div class="comparison-table__cell comparison-table__cell--label">特徴</div>
+            <div class="comparison-table__cell">GPT-4.5</div>
+            <div class="comparison-table__cell">Claude 3.7</div>
+            <div class="comparison-table__cell">Gemini 2.0</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">感情知能</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">推論能力</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">マルチモーダル</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell">一部対応</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">長文処理</div>
+            <div class="comparison-table__cell">標準</div>
+            <div class="comparison-table__cell">200K</div>
+            <div class="comparison-table__cell">2M</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">エコシステム統合</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>料金プラン比較例</h3>
+      <div class="example-container">
+        <div class="example-title">サービスプラン比較</div>
+        <div class="comparison-table">
+          <div class="comparison-table__row comparison-table__row--header">
+            <div class="comparison-table__cell comparison-table__cell--label">項目</div>
+            <div class="comparison-table__cell">無料プラン</div>
+            <div class="comparison-table__cell">スタンダード</div>
+            <div class="comparison-table__cell">プロ</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">料金</div>
+            <div class="comparison-table__cell">¥0</div>
+            <div class="comparison-table__cell">¥1,000/月</div>
+            <div class="comparison-table__cell">¥3,000/月</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">ストレージ</div>
+            <div class="comparison-table__cell">5GB</div>
+            <div class="comparison-table__cell">100GB</div>
+            <div class="comparison-table__cell">無制限</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">サポート</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">優先サポート</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>製品機能比較例</h3>
+      <div class="example-container">
+        <div class="example-title">製品の機能比較</div>
+        <div class="comparison-table">
+          <div class="comparison-table__row comparison-table__row--header">
+            <div class="comparison-table__cell comparison-table__cell--label">機能</div>
+            <div class="comparison-table__cell">製品A</div>
+            <div class="comparison-table__cell">製品B</div>
+            <div class="comparison-table__cell">製品C</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">API連携</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">モバイルアプリ</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+            <div class="comparison-table__cell comparison-table__cell--cross">✗</div>
+            <div class="comparison-table__cell comparison-table__cell--check">✓</div>
+          </div>
+          <div class="comparison-table__row">
+            <div class="comparison-table__cell comparison-table__cell--label">カスタマイズ</div>
+            <div class="comparison-table__cell">制限あり</div>
+            <div class="comparison-table__cell">完全対応</div>
+            <div class="comparison-table__cell">基本のみ</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>HTMLコード例</h3>
+      <pre><code>&lt;div class="comparison-table"&gt;
+  &lt;div class="comparison-table__row comparison-table__row--header"&gt;
+    &lt;div class="comparison-table__cell comparison-table__cell--label"&gt;特徴&lt;/div&gt;
+    &lt;div class="comparison-table__cell"&gt;製品A&lt;/div&gt;
+    &lt;div class="comparison-table__cell"&gt;製品B&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="comparison-table__row"&gt;
+    &lt;div class="comparison-table__cell comparison-table__cell--label"&gt;機能&lt;/div&gt;
+    &lt;div class="comparison-table__cell comparison-table__cell--check"&gt;✓&lt;/div&gt;
+    &lt;div class="comparison-table__cell comparison-table__cell--cross"&gt;✗&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <p><strong>モディファイアクラス:</strong></p>
+      <ul>
+        <li><code>comparison-table__row--header</code>: ヘッダー行</li>
+        <li><code>comparison-table__cell--label</code>: 左端のラベルセル</li>
+        <li><code>comparison-table__cell--check</code>: チェックマーク（緑）</li>
+        <li><code>comparison-table__cell--cross</code>: バツマーク（赤）</li>
+      </ul>
+    </div>
+
+    <!-- Vertical Card Section -->
+    <div class="component-section" id="vertical-card">
+      <h2>3. Vertical Card</h2>
+      <p>番号付きで縦に並ぶカードコンポーネント。取り組み事例やステップの説明に最適です。</p>
+
+      <div class="use-case">
+        <h4>📊 ユースケース</h4>
+        <ul>
+          <li>取り組み事例の紹介</li>
+          <li>プロセスのステップ説明</li>
+          <li>実績やアプローチの説明</li>
+          <li>段階的な説明が必要な内容</li>
+        </ul>
+      </div>
+
+      <div class="features">
+        <h4>✨ 特徴</h4>
+        <ul>
+          <li>グラデーション背景で視認性向上</li>
+          <li>番号バッジ（グラデーション付き）</li>
+          <li>ラベル、タイトル、説明文の3階層構造</li>
+          <li>縦方向のフレキシブルレイアウト</li>
+          <li>柔らかい影とボーダー半径</li>
+        </ul>
+      </div>
+
+      <h3>基本的な使用例</h3>
+      <div class="example-container">
+        <div class="example-title">取り組み事例の紹介</div>
+        <div class="vertical-cards">
+          <div class="vertical-card">
+            <div class="vertical-card__number">01</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">取り組み例</div>
+              <div class="vertical-card__title">フィードバックを求めブラッシュアップする</div>
+              <div class="vertical-card__description">スクラムを導入し、デザイナー以外のステークホルダーを巻き込みながら、レビュー/フィードバックのサイクルを定着させてきました。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">02</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">取り組み例</div>
+              <div class="vertical-card__title">本質的な課題やニーズの発見</div>
+              <div class="vertical-card__description">ドメインエキスパートや顧客へのヒアリングを通して、現場を知り現実的な課題と課題解決された理想像をつかみます。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">03</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">取り組み例</div>
+              <div class="vertical-card__title">よりシンプルで無駄をなくしたデザイン制作</div>
+              <div class="vertical-card__description">各プロセスのアンチパターンをクリアにし、価値を届けるために必要があるかを考え続けます。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>プロセス説明の例</h3>
+      <div class="example-container">
+        <div class="example-title">開発プロセスの説明</div>
+        <div class="vertical-cards">
+          <div class="vertical-card">
+            <div class="vertical-card__number">01</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">フェーズ</div>
+              <div class="vertical-card__title">要件定義と設計</div>
+              <div class="vertical-card__description">ステークホルダーとのワークショップを通じて、プロジェクトの目標と制約を明確化します。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">02</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">フェーズ</div>
+              <div class="vertical-card__title">プロトタイピングと検証</div>
+              <div class="vertical-card__description">MVPを素早く構築し、ユーザーテストでフィードバックを収集します。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">03</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">フェーズ</div>
+              <div class="vertical-card__title">本開発と改善</div>
+              <div class="vertical-card__description">継続的インテグレーションを活用し、段階的にリリースします。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>実績紹介の例</h3>
+      <div class="example-container">
+        <div class="example-title">プロジェクトの成果</div>
+        <div class="vertical-cards">
+          <div class="vertical-card">
+            <div class="vertical-card__number">01</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">達成項目</div>
+              <div class="vertical-card__title">ユーザー体験の向上</div>
+              <div class="vertical-card__description">UXリサーチに基づいた改善により、顧客満足度が前年比15%向上しました。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">02</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">達成項目</div>
+              <div class="vertical-card__title">開発効率の改善</div>
+              <div class="vertical-card__description">デザインシステムの導入により、新機能の開発期間を平均30%短縮しました。</div>
+            </div>
+          </div>
+          <div class="vertical-card">
+            <div class="vertical-card__number">03</div>
+            <div class="vertical-card__content">
+              <div class="vertical-card__label">達成項目</div>
+              <div class="vertical-card__title">コスト削減の実現</div>
+              <div class="vertical-card__description">運用の自動化により、月間運用コストを40%削減できました。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>HTMLコード例</h3>
+      <pre><code>&lt;div class="vertical-cards"&gt;
+  &lt;div class="vertical-card"&gt;
+    &lt;div class="vertical-card__number"&gt;01&lt;/div&gt;
+    &lt;div class="vertical-card__content"&gt;
+      &lt;div class="vertical-card__label"&gt;取り組み例&lt;/div&gt;
+      &lt;div class="vertical-card__title"&gt;フィードバックを求めブラッシュアップする&lt;/div&gt;
+      &lt;div class="vertical-card__description"&gt;スクラムを導入し、デザイナー以外のステークホルダーを巻き込みながら、レビュー/フィードバックのサイクルを定着させてきました。&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <p><strong>カスタマイズ可能な要素:</strong></p>
+      <ul>
+        <li><code>vertical-card__number</code>: 番号バッジ</li>
+        <li><code>vertical-card__label</code>: ラベル（小見出し）</li>
+        <li><code>vertical-card__title</code>: タイトル</li>
+        <li><code>vertical-card__description</code>: 説明文</li>
+      </ul>
+    </div>
+
+    <!-- Grid Card Section -->
+    <div class="component-section" id="grid-card">
+      <h2>4. Grid Card</h2>
+      <p>2カラムのグリッドレイアウトで情報を整理するカードコンポーネント。福利厚生や機能一覧の表示に最適です。</p>
+
+      <div class="use-case">
+        <h4>📊 ユースケース</h4>
+        <ul>
+          <li>福利厚生・制度の一覧</li>
+          <li>機能・サービスの紹介</li>
+          <li>複数項目の並列表示</li>
+          <li>カテゴリ別の情報整理</li>
+        </ul>
+      </div>
+
+      <div class="features">
+        <h4>✨ 特徴</h4>
+        <ul>
+          <li>2カラムのレスポンシブグリッドレイアウト</li>
+          <li>アイコン絵文字とタイトルのヘッダー</li>
+          <li>箇条書きリストによる詳細説明</li>
+          <li>3〜6枚のカードに対応</li>
+          <li>シンプルで読みやすいデザイン</li>
+        </ul>
+      </div>
+
+      <h3>福利厚生制度の例（5枚）</h3>
+      <div class="example-container">
+        <div class="example-title">会社の福利厚生制度</div>
+        <div class="grid-cards">
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">👨‍💼</span>
+              <h3 class="grid-card__title">オフィスワーク補助</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>業務中の労働環境を整え、生産性を高めるために補助手当を支給</li>
+                <li>オフィス用品（ヘッドセット、イヤホン、Webカメラ、PC付属品等）について経費精算が可能</li>
+                <li>入社年度は5万円まで／翌年度からは3万円まで</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">👶</span>
+              <h3 class="grid-card__title">ベビーシッター補助制度</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>仕事と子育てを両立するための支援制度</li>
+                <li>ベビーシッター利用時、お子様1人につき1回あたり4,400円割引になるチケットを提供</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">👥</span>
+              <h3 class="grid-card__title">コミュニケーションサポート</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>社員ランチ代補助</li>
+                <li>ニューフェイスパス<br>新入社員は入社後1ヶ月間、ランチ代補助を何回でも利用可能</li>
+                <li>チームビルディング補助</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">🏠</span>
+              <h3 class="grid-card__title">借り上げ社宅制度<span style="font-size: 0.7em;">（現物支給み替え型）</span></h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>会社が従業員に代わり家賃の「振込」をする</li>
+                <li>会社からの現金支給額が減ることにより、社会保険料や所得税・住民税が下がり、家賃支払い後の実質手取り額が増える</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">🏃</span>
+              <h3 class="grid-card__title">部活動補助</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>会社公認の部活で、一定の条件を満たした活動について、1部活につき月1万円の活動補助を提供</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>サービス機能の例（6枚）</h3>
+      <div class="example-container">
+        <div class="example-title">プラットフォームの主要機能</div>
+        <div class="grid-cards">
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">📊</span>
+              <h3 class="grid-card__title">データ分析ダッシュボード</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>リアルタイムでのデータ可視化</li>
+                <li>カスタマイズ可能なウィジェット</li>
+                <li>複数データソース統合</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">🔒</span>
+              <h3 class="grid-card__title">セキュリティ機能</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>多要素認証（MFA）対応</li>
+                <li>エンドツーエンド暗号化</li>
+                <li>アクセス権限の詳細設定</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">🤖</span>
+              <h3 class="grid-card__title">AI自動化</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>レポート自動生成</li>
+                <li>異常値の自動検知</li>
+                <li>予測分析機能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">📱</span>
+              <h3 class="grid-card__title">モバイル対応</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>iOS/Androidネイティブアプリ</li>
+                <li>オフラインモード対応</li>
+                <li>プッシュ通知機能</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">🔗</span>
+              <h3 class="grid-card__title">API連携</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>RESTful API提供</li>
+                <li>Webhook対応</li>
+                <li>サードパーティ連携多数</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">💬</span>
+              <h3 class="grid-card__title">コラボレーション</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>リアルタイム共同編集</li>
+                <li>コメント・メンション機能</li>
+                <li>バージョン履歴管理</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>プロジェクト成果の例（3枚）</h3>
+      <div class="example-container">
+        <div class="example-title">プロジェクトの主要成果</div>
+        <div class="grid-cards">
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">⚡</span>
+              <h3 class="grid-card__title">パフォーマンス向上</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>ページ読み込み速度を60%改善</li>
+                <li>サーバーレスポンスタイムを40%短縮</li>
+                <li>Core Web Vitalsの全指標でGood評価達成</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">😊</span>
+              <h3 class="grid-card__title">ユーザー満足度向上</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>NPS（ネットプロモータースコア）が+25ポイント上昇</li>
+                <li>ユーザー継続率が85%に改善</li>
+                <li>カスタマーサポート問い合わせ30%削減</li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card__header">
+              <span class="grid-card__icon">💰</span>
+              <h3 class="grid-card__title">ビジネス成果</h3>
+            </div>
+            <div class="grid-card__content">
+              <ul>
+                <li>コンバージョン率が前年比120%向上</li>
+                <li>運用コストを月額50万円削減</li>
+                <li>新規ユーザー獲得数が倍増</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>HTMLコード例</h3>
+      <pre><code>&lt;div class="grid-cards"&gt;
+  &lt;div class="grid-card"&gt;
+    &lt;div class="grid-card__header"&gt;
+      &lt;span class="grid-card__icon"&gt;👨‍💼&lt;/span&gt;
+      &lt;h3 class="grid-card__title"&gt;オフィスワーク補助&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="grid-card__content"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;業務中の労働環境を整え、生産性を高めるために補助手当を支給&lt;/li&gt;
+        &lt;li&gt;オフィス用品について経費精算が可能&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+      <p><strong>カスタマイズ可能な要素:</strong></p>
+      <ul>
+        <li><code>grid-card__icon</code>: アイコン絵文字</li>
+        <li><code>grid-card__title</code>: タイトル</li>
+        <li><code>grid-card__content</code>: コンテンツ（箇条書きリスト）</li>
+      </ul>
+
+      <p><strong>枚数による表示:</strong></p>
+      <ul>
+        <li>3枚: 左列2枚、右列1枚</li>
+        <li>4枚: 左右2枚ずつ</li>
+        <li>5枚: 左列3枚、右列2枚</li>
+        <li>6枚: 左右3枚ずつ</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

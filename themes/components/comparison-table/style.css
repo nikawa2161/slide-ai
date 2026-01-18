@@ -1,0 +1,119 @@
+/**
+ * Comparison Table Component
+ * 複数項目を横並びで比較するテーブルコンポーネント
+ *
+ * 使用例:
+ * <div class="comparison-table">
+ *   <div class="comparison-table__row comparison-table__row--header">
+ *     <div class="comparison-table__cell comparison-table__cell--label">特徴</div>
+ *     <div class="comparison-table__cell">GPT-4.5</div>
+ *     <div class="comparison-table__cell">Claude 3.7</div>
+ *     <div class="comparison-table__cell">Gemini 2.0</div>
+ *   </div>
+ *   <div class="comparison-table__row">
+ *     <div class="comparison-table__cell comparison-table__cell--label">感情知能</div>
+ *     <div class="comparison-table__cell">✓</div>
+ *     <div class="comparison-table__cell">✗</div>
+ *     <div class="comparison-table__cell">✗</div>
+ *   </div>
+ * </div>
+ *
+ * モディファイア:
+ * - comparison-table__row--header: ヘッダー行用スタイル
+ * - comparison-table__cell--label: 左端のラベルセル用スタイル
+ * - comparison-table__cell--check: チェックマーク（緑）
+ * - comparison-table__cell--cross: バツマーク（赤）
+ */
+
+/* テーブルコンテナ */
+:where(section) .comparison-table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 行 */
+:where(section) .comparison-table__row {
+  display: grid;
+  grid-template-columns: 200px repeat(3, 1fr);
+  gap: 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+:where(section) .comparison-table__row:last-child {
+  border-bottom: none;
+}
+
+/* ヘッダー行 */
+:where(section) .comparison-table__row--header {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  font-weight: bold;
+}
+
+:where(section) .comparison-table__row--header .comparison-table__cell {
+  color: #1976d2;
+  font-size: 1.1em;
+  padding: 1em 1.2em;
+}
+
+/* セル */
+:where(section) .comparison-table__cell {
+  padding: 0.9em 1.2em;
+  text-align: center;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95em;
+  line-height: 1.4;
+}
+
+:where(section) .comparison-table__cell:last-child {
+  border-right: none;
+}
+
+/* 左端のラベルセル */
+:where(section) .comparison-table__cell--label {
+  background-color: #f5f7fa;
+  text-align: left;
+  justify-content: flex-start;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+:where(section) .comparison-table__row--header .comparison-table__cell--label {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  color: #1976d2;
+}
+
+/* チェックマーク */
+:where(section) .comparison-table__cell--check {
+  color: #4caf50;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* バツマーク */
+:where(section) .comparison-table__cell--cross {
+  color: #f44336;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* 2行レイアウト（4カラム対応） */
+:where(section) .comparison-table--4col .comparison-table__row {
+  grid-template-columns: 200px repeat(3, 1fr);
+}
+
+/* 3行レイアウト（5カラム対応） */
+:where(section) .comparison-table--5col .comparison-table__row {
+  grid-template-columns: 180px repeat(4, 1fr);
+}
+
+/* 偶数行の背景色 */
+:where(section) .comparison-table__row:nth-child(even) .comparison-table__cell:not(.comparison-table__cell--label) {
+  background-color: #fafbfc;
+}

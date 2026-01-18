@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vertical Card Component - Preview</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Hiragino Sans', 'Noto Sans CJK JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .example-section {
+      margin: 40px 0;
+    }
+    .example-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #4169e1;
+      margin-bottom: 20px;
+      border-left: 4px solid #4169e1;
+      padding-left: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vertical Card Component</h1>
+    <p class="subtitle">番号付きで縦に並ぶカードコンポーネント。取り組み事例やステップの説明に最適です。</p>
+
+    <div class="example-section">
+      <div class="example-title">取り組み事例の紹介</div>
+      <div class="vertical-cards">
+        <div class="vertical-card">
+          <div class="vertical-card__number">01</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">取り組み例</div>
+            <div class="vertical-card__title">フィードバックを求めブラッシュアップする</div>
+            <div class="vertical-card__description">スクラムを導入し、デザイナー以外のステークホルダーを巻き込みながら、レビュー/フィードバックのサイクルを定着させてきました。</div>
+          </div>
+        </div>
+        <div class="vertical-card">
+          <div class="vertical-card__number">02</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">取り組み例</div>
+            <div class="vertical-card__title">本質的な課題やニーズの発見</div>
+            <div class="vertical-card__description">ドメインエキスパートや顧客へのヒアリングを通して、現場を知り現実的な課題と課題解決された理想像をつかみます。</div>
+          </div>
+        </div>
+        <div class="vertical-card">
+          <div class="vertical-card__number">03</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">取り組み例</div>
+            <div class="vertical-card__title">よりシンプルで無駄をなくしたデザイン制作</div>
+            <div class="vertical-card__description">各プロセスのアンチパターンをクリアにし、価値を届けるために必要があるかを考え続けます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="example-title">開発プロセスの説明</div>
+      <div class="vertical-cards">
+        <div class="vertical-card">
+          <div class="vertical-card__number">01</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">フェーズ</div>
+            <div class="vertical-card__title">要件定義と設計</div>
+            <div class="vertical-card__description">ステークホルダーとのワークショップを通じて、プロジェクトの目標と制約を明確化します。</div>
+          </div>
+        </div>
+        <div class="vertical-card">
+          <div class="vertical-card__number">02</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">フェーズ</div>
+            <div class="vertical-card__title">プロトタイピングと検証</div>
+            <div class="vertical-card__description">MVPを素早く構築し、ユーザーテストでフィードバックを収集します。</div>
+          </div>
+        </div>
+        <div class="vertical-card">
+          <div class="vertical-card__number">03</div>
+          <div class="vertical-card__content">
+            <div class="vertical-card__label">フェーズ</div>
+            <div class="vertical-card__title">本開発と改善</div>
+            <div class="vertical-card__description">継続的インテグレーションを活用し、段階的にリリースします。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

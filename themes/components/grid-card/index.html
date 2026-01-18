@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Card Component - Preview</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Hiragino Sans', 'Noto Sans CJK JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      padding: 40px;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .example-section {
+      margin: 40px 0;
+    }
+    .example-title {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: #4169e1;
+      margin-bottom: 20px;
+      border-left: 4px solid #4169e1;
+      padding-left: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Grid Card Component</h1>
+    <p class="subtitle">2カラムのグリッドレイアウトで情報を整理するカードコンポーネント。福利厚生や機能一覧の表示に最適です。</p>
+
+    <div class="example-section">
+      <div class="example-title">会社の福利厚生制度（5枚の例）</div>
+      <div class="grid-cards">
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">👨‍💼</span>
+            <h3 class="grid-card__title">オフィスワーク補助</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>業務中の労働環境を整え、生産性を高めるために補助手当を支給</li>
+              <li>オフィス用品（ヘッドセット、イヤホン、Webカメラ、PC付属品等）について経費精算が可能</li>
+              <li>入社年度は5万円まで／翌年度からは3万円まで</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">👶</span>
+            <h3 class="grid-card__title">ベビーシッター補助制度</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>仕事と子育てを両立するための支援制度</li>
+              <li>ベビーシッター利用時、お子様1人につき1回あたり4,400円割引になるチケットを提供</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">👥</span>
+            <h3 class="grid-card__title">コミュニケーションサポート</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>社員ランチ代補助</li>
+              <li>ニューフェイスパス<br>新入社員は入社後1ヶ月間、ランチ代補助を何回でも利用可能</li>
+              <li>チームビルディング補助</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">🏠</span>
+            <h3 class="grid-card__title">借り上げ社宅制度<span style="font-size: 0.7em;">（現物支給み替え型）</span></h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>会社が従業員に代わり家賃の「振込」をする</li>
+              <li>会社からの現金支給額が減ることにより、社会保険料や所得税・住民税が下がり、家賃支払い後の実質手取り額が増える</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">🏃</span>
+            <h3 class="grid-card__title">部活動補助</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>会社公認の部活で、一定の条件を満たした活動について、1部活につき月1万円の活動補助を提供</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="example-title">プラットフォームの主要機能（6枚の例）</div>
+      <div class="grid-cards">
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">📊</span>
+            <h3 class="grid-card__title">データ分析ダッシュボード</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>リアルタイムでのデータ可視化</li>
+              <li>カスタマイズ可能なウィジェット</li>
+              <li>複数データソース統合</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">🔒</span>
+            <h3 class="grid-card__title">セキュリティ機能</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>多要素認証（MFA）対応</li>
+              <li>エンドツーエンド暗号化</li>
+              <li>アクセス権限の詳細設定</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">🤖</span>
+            <h3 class="grid-card__title">AI自動化</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>レポート自動生成</li>
+              <li>異常値の自動検知</li>
+              <li>予測分析機能</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">📱</span>
+            <h3 class="grid-card__title">モバイル対応</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>iOS/Androidネイティブアプリ</li>
+              <li>オフラインモード対応</li>
+              <li>プッシュ通知機能</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">🔗</span>
+            <h3 class="grid-card__title">API連携</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>RESTful API提供</li>
+              <li>Webhook対応</li>
+              <li>サードパーティ連携多数</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">💬</span>
+            <h3 class="grid-card__title">コラボレーション</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>リアルタイム共同編集</li>
+              <li>コメント・メンション機能</li>
+              <li>バージョン履歴管理</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-section">
+      <div class="example-title">プロジェクトの主要成果（3枚の例）</div>
+      <div class="grid-cards">
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">⚡</span>
+            <h3 class="grid-card__title">パフォーマンス向上</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>ページ読み込み速度を60%改善</li>
+              <li>サーバーレスポンスタイムを40%短縮</li>
+              <li>Core Web Vitalsの全指標でGood評価達成</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">😊</span>
+            <h3 class="grid-card__title">ユーザー満足度向上</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>NPS（ネットプロモータースコア）が+25ポイント上昇</li>
+              <li>ユーザー継続率が85%に改善</li>
+              <li>カスタマーサポート問い合わせ30%削減</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-card">
+          <div class="grid-card__header">
+            <span class="grid-card__icon">💰</span>
+            <h3 class="grid-card__title">ビジネス成果</h3>
+          </div>
+          <div class="grid-card__content">
+            <ul>
+              <li>コンバージョン率が前年比120%向上</li>
+              <li>運用コストを月額50万円削減</li>
+              <li>新規ユーザー獲得数が倍増</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
