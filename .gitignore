@@ -8,3 +8,8 @@ catalog/*.png
 catalog/*.md
 !catalog/.gitkeep
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
