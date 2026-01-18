@@ -16,24 +16,48 @@ Claude CodeのAIアシスタントを使用して、MarkdownファイルからMa
 
 ```
 slide-ai/
+├── .claude/                   # Claude Code設定
+│   ├── commands/              # カスタムコマンド
+│   │   └── export-pdf.md      # PDF生成コマンド
+│   └── skills/                # カスタムスキル
+│       ├── commit/            # コミット支援
+│       ├── pr/                # PR作成支援
+│       ├── issue/             # Issue作成支援
+│       └── marp-component-builder/  # コンポーネント作成
+├── .github/                   # GitHub運用設定
+│   ├── ISSUE_TEMPLATE/        # Issueテンプレート
+│   ├── pull_request_template.md
+│   └── workflows/             # GitHub Actions
 ├── themes/                    # カスタムテーマ
-│   └── theme.css             # slide-aiテーマ定義
+│   ├── theme.css              # slide-aiテーマ定義
+│   ├── USAGE.md               # テーマ使用方法
+│   └── components/            # CSSコンポーネントライブラリ
+│       ├── metric-card/       # メトリクスカード
+│       ├── comparison-table/  # 比較表
+│       ├── grid-card/         # グリッドカード
+│       ├── vertical-card/     # 縦型カード
+│       ├── index.html         # コンポーネントカタログ
+│       └── README.md          # コンポーネント説明
 ├── shared/                    # 共通資産
 │   ├── rules/
-│   │   └── slide.md          # スライド生成ルール
+│   │   ├── slide.md           # スライド生成ルール
+│   │   └── operations.md      # 運用ルール
 │   ├── templates/
-│   │   └── default.md        # デフォルトテンプレート
-│   └── .images/              # 共通画像（ロゴ、背景など）
+│   │   └── default.md         # デフォルトテンプレート
+│   └── .images/               # 共通画像
 │       ├── logo.png
 │       └── background.png
 ├── decks/                     # スライドデッキ
-│   └── YYYYMMDD_タイトル/     # デッキ単位のフォルダ
-│       ├── input.md          # 入力Markdown
-│       ├── deck.md           # 生成されたスライド
-│       ├── deck.pdf          # 生成されたPDF（Git管理外）
-│       └── .images/          # デッキ固有の画像
-└── .vscode/
-    └── settings.json         # VS Code設定（テーマ登録）
+│   └── YYYYMMDD_タイトル/
+│       ├── input.md           # 入力Markdown
+│       ├── deck.md            # 生成されたスライド
+│       ├── deck.pdf           # 生成されたPDF（Git管理外）
+│       └── .images/           # デッキ固有の画像
+├── .vscode/
+│   └── settings.json          # VS Code設定（テーマ登録）
+├── .gitignore                 # Git除外設定
+├── CLAUDE.md                  # Claude Code向けプロジェクト説明
+└── README.md                  # このファイル
 ```
 
 ## 基本的な使い方
@@ -67,6 +91,66 @@ slide-ai/
    - Marp for VS Codeで生成された`deck.md`を開く
    - VS Codeのコマンドパレット（Cmd+Shift+P）から「Marp: Export slide deck」を選択
    - PDFは自動的に`.gitignore`で除外されます
+
+## Claude Codeカスタム機能
+
+このプロジェクトでは、Claude Codeを強化するカスタムコマンドとスキルを提供しています。
+
+### カスタムコマンド
+
+#### `/export-pdf`
+Marp CLIを使用してスライドをPDF形式にエクスポートします。
+
+```
+/export-pdf decks/20260112_sample
+```
+
+引数なしで実行すると、利用可能なデッキ一覧が表示されます。
+
+### カスタムスキル
+
+#### `/commit`
+変更を適切な粒度に分割してコミットします。コード変更完了時に自動的に提案されます。
+
+#### `/pr`
+現在のブランチ名からGitHub ISSUEの情報を取得し、PRを作成します。コミット完了後に自動的に提案されます。
+
+#### `/issue`
+GitHub ISSUEを作成します。ユーザーがISSUEの作成を依頼したときに使用します。
+
+#### `/marp-component-builder`
+Marpスライド用のCSSコンポーネントを作成・管理します。モック画像から再現性の高いコンポーネント（.metric-card、.comparison-matrixなど）を生成し、`themes/components/`で管理します。
+
+- デザイントークン、BEM命名規則、スライド制約（文字数・行数制限）を適用
+- 反復改善ワークフロー（CSS生成→HTML出力→スクショ→画像比較）をサポート
+
+使用例：
+- 「モック画像からメトリクスカードコンポーネントを作って」
+- 「コンポーネントカタログを作成して」
+
+## CSSコンポーネントライブラリ
+
+スライドで使用できる再利用可能なCSSコンポーネントライブラリを提供しています（`themes/components/`）。
+
+### 利用可能なコンポーネント
+
+- **metric-card** - メトリクス表示カード
+  数値データを視覚的に表示するためのカードコンポーネント
+
+- **comparison-table** - 比較表
+  複数の項目を比較するための表形式コンポーネント
+
+- **grid-card** - グリッドレイアウトカード
+  複数のカードをグリッド形式で配置するコンポーネント
+
+- **vertical-card** - 縦型カード
+  縦長のカードレイアウトコンポーネント
+
+### 使用方法
+
+各コンポーネントの詳細な使用方法は [themes/components/README.md](themes/components/README.md) を参照してください。
+
+コンポーネントカタログは `themes/components/index.html` で確認できます。
 
 ## 注意事項
 
